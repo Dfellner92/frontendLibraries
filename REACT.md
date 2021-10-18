@@ -258,23 +258,23 @@ class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      submit: ''
+      input: "",
+      submit: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     this.setState({
-      input: event.target.value
+      input: event.target.value,
     });
   }
   handleSubmit(event) {
     // Change code below this line
     event.preventDefault();
     this.setState({
-      submit: this.state.input
-    })
+      submit: this.state.input,
+    });
     // Change code above this line
   }
   render() {
@@ -282,13 +282,118 @@ class MyForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           {/* Change code below this line */}
-          <input value={this.state.input} onChange={this.handleChange}/>
+          <input value={this.state.input} onChange={this.handleChange} />
           {/* Change code above this line */}
-          <button type='submit' onChange={this.handleSubmit}>Submit!</button>
+          <button type="submit" onChange={this.handleSubmit}>
+            Submit!
+          </button>
         </form>
         {/* Change code below this line */}
         <h1>{this.state.submit}</h1>
         {/* Change code above this line */}
+      </div>
+    );
+  }
+}
+```
+
+### Pass State as Props to Class Components
+
+The `MyApp` component is stateful and renders a `Navbar` component as a child. Pass the `name` property in its `state` down to the child component, then show the `name` in the `h1` tag that's part of the `Navbar` render method. `name` should appear after the text `Hello, my name is:`.
+
+```javascript
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "CamperBot",
+    };
+  }
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <Navbar name={this.state.name} />
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+}
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <h1>Hello, my name is: {this.props.name}</h1>
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+}
+```
+
+### Pass a Callback as Props
+
+There are three components outlined in the code editor. The `MyApp` component is the parent that will render the `GetInput` and `RenderInput` child components. Add the `GetInput` component to the render method in `MyApp`, then pass it a prop called `input` assigned to `inputValue` from `MyApp`'s `state`. Also create a prop called `handleChange` and pass the input handler `handleChange` to it.
+
+Next, add `RenderInput` to the render method in `MyApp`, then create a prop called `input` and pass the `inputValue` from `state` to it. Once you are finished you will be able to type in the `input` field in the `GetInput` component, which then calls the handler method in its parent via props. This updates the input in the `state` of the parent, which is passed as props to both children. Observe how the data flows between the components and how the single source of truth remains the `state` of the parent component. Admittedly, this example is a bit contrived, but should serve to illustrate how data and callbacks can be passed between React components.
+
+```javascript
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value,
+    });
+  }
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <GetInput
+          input={this.state.inputValue}
+          handleChange={this.handleChange}
+        />
+        <RenderInput input={this.state.inputValue} />
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+}
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input value={this.props.input} onChange={this.props.handleChange} />
+      </div>
+    );
+  }
+}
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
       </div>
     );
   }
