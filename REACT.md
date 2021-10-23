@@ -494,3 +494,46 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+### Optimize Re-Renders with shouldComponentUpdate
+
+The `shouldComponentUpdate()` method is added in a component called `OnlyEvens`. Currently, this method returns `true` so `OnlyEvens` re-renders every time it receives new `props`. Modify the method so `OnlyEvens` updates only if the `value` of its new props is even. Click the `Add` button and watch the order of events in your browser's console as the lifecycle hooks are triggered.
+
+```javascript
+
+```
+
+### Introducing Inline Styles
+
+Add a `style` attribute to the `div` in the code editor to give the text a color of red and font size of `72px`.
+
+Note that you can optionally set the font size to be a number, omitting the units `px`, or write it as `72px`.
+
+```javascript
+class Colorful extends React.Component {
+  render() {
+    return <div style={{ color: "red", fontSize: "72px" }}>Big Red</div>;
+  }
+}
+```
+
+### Add Inline Styles in React
+
+If you have a large set of styles, you can assign a style `object` to a constant to keep your code organized. Declare your styles constant as a global variable at the top of the file. Initialize `styles` constant and assign an `object` with three style properties and their values to it. Give the `div` a color of `purple`, a font-size of `40`, and a border of `2px solid purple`. Then set the `style` attribute equal to the `styles` constant.
+
+```javascript
+const styles = {
+  color: "purple",
+  fontSize: 40,
+  border: "2px solid purple",
+};
+// Change code above this line
+class Colorful extends React.Component {
+  render() {
+    // Change code below this line
+
+    return <div style={styles}>Style Me!</div>;
+    // Change code above this line
+  }
+}
+```
