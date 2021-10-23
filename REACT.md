@@ -538,24 +538,22 @@ class Colorful extends React.Component {
 }
 ```
 
-
 ### Use Advanced JavaScript in React Render Method
 
 In the code provided, the `render` method has an array that contains 20 phrases to represent the answers found in the classic 1980's Magic Eight Ball toy. The button click event is bound to the `ask` method, so each time the button is clicked a random number will be generated and stored as the `randomIndex` in state. On line 52, delete the string `change me!` and reassign the `answer` const so your code randomly accesses a different index of the `possibleAnswers` array each time the component updates. Finally, insert the `answer` const inside the `p` tags.
 
-
 ```javascript
 const inputStyle = {
   width: 235,
-  margin: 5
+  margin: 5,
 };
 
 class MagicEightBall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: '',
-      randomIndex: ''
+      userInput: "",
+      randomIndex: "",
     };
     this.ask = this.ask.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -564,43 +562,43 @@ class MagicEightBall extends React.Component {
     if (this.state.userInput) {
       this.setState({
         randomIndex: Math.floor(Math.random() * 20),
-        userInput: ''
+        userInput: "",
       });
     }
   }
   handleChange(event) {
     this.setState({
-      userInput: event.target.value
+      userInput: event.target.value,
     });
   }
   render() {
     const possibleAnswers = [
-      'It is certain',
-      'It is decidedly so',
-      'Without a doubt',
-      'Yes, definitely',
-      'You may rely on it',
-      'As I see it, yes',
-      'Outlook good',
-      'Yes',
-      'Signs point to yes',
-      'Reply hazy try again',
-      'Ask again later',
-      'Better not tell you now',
-      'Cannot predict now',
-      'Concentrate and ask again',
+      "It is certain",
+      "It is decidedly so",
+      "Without a doubt",
+      "Yes, definitely",
+      "You may rely on it",
+      "As I see it, yes",
+      "Outlook good",
+      "Yes",
+      "Signs point to yes",
+      "Reply hazy try again",
+      "Ask again later",
+      "Better not tell you now",
+      "Cannot predict now",
+      "Concentrate and ask again",
       "Don't count on it",
-      'My reply is no',
-      'My sources say no',
-      'Most likely',
-      'Outlook not so good',
-      'Very doubtful'
+      "My reply is no",
+      "My sources say no",
+      "Most likely",
+      "Outlook not so good",
+      "Very doubtful",
     ];
     const answer = possibleAnswers[this.state.randomIndex]; // Change this line
     return (
       <div>
         <input
-          type='text'
+          type="text"
           value={this.state.userInput}
           onChange={this.handleChange}
           style={inputStyle}
@@ -616,6 +614,46 @@ class MagicEightBall extends React.Component {
         </p>
       </div>
     );
+  }
+}
+```
+
+### Render with an If-Else Condition
+
+MyComponent contains a `boolean` in its state which tracks whether you want to display some element in the UI or not. The `button` toggles the state of this value. Currently, it renders the same UI every time. Rewrite the `render()` method with an `if/else` statement so that if `display` is `true`, you return the current markup. Otherwise, return the markup without the `h1` element.
+
+Note: You must write an `if/else` to pass the tests. Use of the ternary operator will not pass here.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true,
+    };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState((state) => ({
+      display: !state.display,
+    }));
+  }
+  render() {
+    // Change code below this line
+    if (this.state.display) {
+      return (
+        <div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+          <h1>Displayed!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+        </div>
+      );
+    }
   }
 }
 ```
