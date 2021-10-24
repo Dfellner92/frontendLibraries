@@ -70,3 +70,42 @@ const loginAction = () => {
 // Dispatch the action here:
 store.dispatch(loginAction())
 ```
+
+### Handle and Action in the Store
+
+The code editor has the previous example as well as the start of a `reducer` function for you. Fill in the body of the `reducer` function so that if it receives an action of type `'LOGIN'` it returns a state object with `login` set to `true`. Otherwise, it returns the current `state`. Note that the current state and the dispatched `action` are passed to the reducer, so you can access the action's type directly with `action.type`.
+
+```javascript
+const defaultState = {
+  login: false
+};
+
+const reducer = (state = defaultState, action) => {
+  // Change code below this line
+  switch (action.type) {
+    case 'LOGIN': 
+      return {...state, login: true }
+    default:
+      return state;
+  }
+  // Change code above this line
+};
+
+const store = Redux.createStore(reducer);
+
+const loginAction = () => {
+  return {
+    type: 'LOGIN'
+  }
+};
+```
+
+### Use a Switch Statement to Handle Multiple Actions
+
+The code editor has a store, actions, and action creators set up for you. Fill in the `reducer` function to handle multiple authentication actions. Use a JavaScript `switch` statement in the `reducer` to respond to different action events. This is a standard pattern in writing Redux reducers. The switch statement should switch over `action.type` and return the appropriate authentication state.
+
+Note: At this point, don't worry about state immutability, since it is small and simple in this example. For each action, you can return a new object — for example, `{authenticated: true}`. Also, don't forget to write a `default` case in your switch statement that returns the current `state`. This is important because once your app has multiple reducers, they are all run any time an action dispatch is made, even when the action isn't related to that reducer. In such a case, you want to make sure that you return the current `state`.
+
+```javascript
+
+```
