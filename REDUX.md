@@ -26,3 +26,47 @@ const store = Redux.createStore((state = 5) => state);
 const currentState = store.getState();
 ```
 
+### Define a Redux Action
+
+Writing a Redux action is as simple as declaring an `object` with a type property. Declare an object action and give it a property `type` set to the string `'LOGIN'`.
+
+```javascript
+// Define an action here:
+const action = {
+  type: "LOGIN",
+};
+```
+
+### Define an Action Creator
+
+Define a function named `actionCreator()` that returns the `action` object when called.
+
+```javascript
+const action = {
+  type: 'LOGIN'
+}
+// Define an action creator here:
+function actionCreator() {
+  return action;
+}
+```
+
+
+### Dispatch an Action Event
+
+The Redux store in the code editor has an initialized state that's an object containing a `login` property currently set to `false`. There's also an action creator called `loginAction()` which returns an action of type `LOGIN`. Dispatch the `LOGIN` action to the Redux store by calling the `dispatch` method, and pass in the action created by `loginAction()`.
+
+```javascript
+const store = Redux.createStore(
+  (state = {login: false}) => state
+);
+
+const loginAction = () => {
+  return {
+    type: 'LOGIN'
+  }
+};
+
+// Dispatch the action here:
+store.dispatch(loginAction())
+```
