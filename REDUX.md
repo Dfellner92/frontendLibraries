@@ -43,32 +43,29 @@ Define a function named `actionCreator()` that returns the `action` object when 
 
 ```javascript
 const action = {
-  type: 'LOGIN'
-}
+  type: "LOGIN",
+};
 // Define an action creator here:
 function actionCreator() {
   return action;
 }
 ```
 
-
 ### Dispatch an Action Event
 
 The Redux store in the code editor has an initialized state that's an object containing a `login` property currently set to `false`. There's also an action creator called `loginAction()` which returns an action of type `LOGIN`. Dispatch the `LOGIN` action to the Redux store by calling the `dispatch` method, and pass in the action created by `loginAction()`.
 
 ```javascript
-const store = Redux.createStore(
-  (state = {login: false}) => state
-);
+const store = Redux.createStore((state = { login: false }) => state);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 // Dispatch the action here:
-store.dispatch(loginAction())
+store.dispatch(loginAction());
 ```
 
 ### Handle and Action in the Store
@@ -77,14 +74,14 @@ The code editor has the previous example as well as the start of a `reducer` fun
 
 ```javascript
 const defaultState = {
-  login: false
+  login: false,
 };
 
 const reducer = (state = defaultState, action) => {
   // Change code below this line
   switch (action.type) {
-    case 'LOGIN': 
-      return {...state, login: true }
+    case "LOGIN":
+      return { ...state, login: true };
     default:
       return state;
   }
@@ -95,8 +92,8 @@ const store = Redux.createStore(reducer);
 
 const loginAction = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 ```
 
@@ -108,18 +105,18 @@ Note: At this point, don't worry about state immutability, since it is small and
 
 ```javascript
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
   // Change code below this line
   switch (action.type) {
-    case 'LOGIN':
-      return {...state, authenticated: true};
-    case 'LOGOUT':
-      return {...state, authenticated: false};
-    default: 
-      return state    
+    case "LOGIN":
+      return { ...state, authenticated: true };
+    case "LOGOUT":
+      return { ...state, authenticated: false };
+    default:
+      return state;
   }
   // Change code above this line
 };
@@ -128,14 +125,14 @@ const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: 'LOGIN'
-  }
+    type: "LOGIN",
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: 'LOGOUT'
-  }
+    type: "LOGOUT",
+  };
 };
 ```
 
@@ -146,43 +143,77 @@ Declare `LOGIN` and `LOGOUT` as `const` values and assign them to the strings `'
 Note: It's generally a convention to write constants in all uppercase, and this is standard practice in Redux as well.
 
 ```javascript
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 
 const defaultState = {
-  authenticated: false
+  authenticated: false,
 };
 
 const authReducer = (state = defaultState, action) => {
-
   switch (action.type) {
-    case LOGIN: 
+    case LOGIN:
       return {
-        authenticated: true
-      }
-    case LOGOUT: 
+        authenticated: true,
+      };
+    case LOGOUT:
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
 
     default:
       return state;
-
   }
-
 };
 
 const store = Redux.createStore(authReducer);
 
 const loginUser = () => {
   return {
-    type: LOGIN
-  }
+    type: LOGIN,
+  };
 };
 
 const logoutUser = () => {
   return {
-    type: LOGOUT
-  }
+    type: LOGOUT,
+  };
 };
 ```
+
+### Register a Store Listener
+
+Write a callback function that increments the global variable `count` every time the store receives an action, and pass this function in to the `store.subscribe()` method. You'll see that `store.dispatch()` is called three times in a row, each time directly passing in an action object. Watch the console output between the action dispatches to see the updates take place.
+
+```javascript
+const ADD = "ADD";
+
+const reducer = (state = 0, action) => {
+  switch (action.type) {
+    case ADD:
+      return state + 1;
+    default:
+      return state;
+  }
+};
+
+const store = Redux.createStore(reducer);
+
+// Global count variable:
+let count = 0;
+
+// Change code below this line
+store.subscribe(() => {
+  return count++;
+});
+// Change code above this line
+
+store.dispatch({ type: ADD });
+console.log(count);
+store.dispatch({ type: ADD });
+console.log(count);
+store.dispatch({ type: ADD });
+console.log(count);
+```
+
+### 
