@@ -943,3 +943,104 @@ class MyToDoList extends React.Component {
 
 ### Give Sibling Elements a Unique Key Attribute
 
+The code editor has an array with some front end frameworks and a stateless functional component named `Frameworks()`. `Frameworks()` needs to map the array to an unordered list, much like in the last challenge. Finish writing the `map` callback to return an `li` element for each framework in the `frontEndFrameworks` array. This time, make sure to give each `li` a `key` attribute, set to a unique value. The `li` elements should also contain text from `frontEndFrameworks`.
+
+Normally, you want to make the key something that uniquely identifies the element being rendered. As a last resort the array index may be used, but typically you should try to use a unique identification.
+
+```javascript
+const frontEndFrameworks = [
+  "React",
+  "Angular",
+  "Ember",
+  "Knockout",
+  "Backbone",
+  "Vue",
+];
+
+function Frameworks() {
+  const renderFrameworks = frontEndFrameworks.map((frame) => {
+    return <li key={frame}>{frame}</li>;
+  });
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>{renderFrameworks}</ul>
+    </div>
+  );
+}
+```
+
+### Use Array.filter() to Dynamically Filter an Array
+
+In the code editor, `MyComponent`'s `state` is initialized with an array of users. Some users are online and some aren't. Filter the array so you see only the users who are online. To do this, first use `filter` to return a new array containing only the users whose `online` property is `true`. Then, in the `renderOnline` variable, map over the filtered array, and return a `li` element for each user that contains the text of their `username`. Be sure to include a unique `key` as well, like in the last challenges.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    };
+  }
+  render() {
+    const usersOnline = this.state.users.filter((user) => 
+      user.online 
+    )
+    const renderOnline = usersOnline.map((user) => {
+       return <li key={user.username}>{user.username}</li>
+
+    }
+    )
+    return (
+      <div>
+        <h1>Current Online Users:</h1>
+        <ul>{renderOnline}</ul>
+      </div>
+    );
+  }
+}
+```
+
+### Render React on the Server with renderToString
+
+The `renderToString()` method is provided on `ReactDOMServer`, which is available here as a global object. The method takes one argument which is a React element. Use this to render `App` to a string.
+
+```javascript
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <div/>
+  }
+};
+
+// Change code below this line
+ReactDOMServer.renderToString(<App/>)
+```
+
