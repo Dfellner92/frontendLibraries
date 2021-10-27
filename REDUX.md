@@ -221,11 +221,11 @@ console.log(count);
 There are `counterReducer()` and `authReducer()` functions provided in the code editor, along with a Redux store. Finish writing the `rootReducer()` function using the `Redux.combineReducers()` method. Assign `counterReducer` to a key called `count` and `authReducer` to a key called `auth`.
 
 ```javascript
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
 
 const counterReducer = (state = 0, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case INCREMENT:
       return state + 1;
     case DECREMENT:
@@ -235,19 +235,19 @@ const counterReducer = (state = 0, action) => {
   }
 };
 
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 
-const authReducer = (state = {authenticated: false}, action) => {
-  switch(action.type) {
+const authReducer = (state = { authenticated: false }, action) => {
+  switch (action.type) {
     case LOGIN:
       return {
-        authenticated: true
-      }
+        authenticated: true,
+      };
     case LOGOUT:
       return {
-        authenticated: false
-      }
+        authenticated: false,
+      };
     default:
       return state;
   }
@@ -255,7 +255,7 @@ const authReducer = (state = {authenticated: false}, action) => {
 
 const rootReducer = Redux.combineReducers({
   count: counterReducer,
-  auth: authReducer
+  auth: authReducer,
 });
 
 const store = Redux.createStore(rootReducer);
@@ -263,3 +263,40 @@ const store = Redux.createStore(rootReducer);
 
 ### Send Action Data to the Store
 
+There's a basic `notesReducer()` and an `addNoteText()` action creator defined in the code editor. Finish the body of the `addNoteText()` function so that it returns an `action` object. The object should include a `type` property with a value of `ADD_NOTE`, and also a `text` property set to the `note` data that's passed into the action creator. When you call the action creator, you'll pass in specific note information that you can access for the object.
+
+Next, finish writing the `switch` statement in the `notesReducer()`. You need to add a case that handles the `addNoteText()` actions. This case should be triggered whenever there is an action of type `ADD_NOTE` and it should return the `text` property on the incoming `action` as the new `state`.
+
+The action is dispatched at the bottom of the code. Once you're finished, run the code and watch the console. That's all it takes to send action-specific data to the store and use it when you update store `state`.
+
+```javascript
+const ADD_NOTE = "ADD_NOTE";
+
+const notesReducer = (state = "Initial State", action) => {
+  switch (action.type) {
+    // Change code below this line
+    case ADD_NOTE:
+      return action.text;
+    // Change code above this line
+    default:
+      return state;
+  }
+};
+
+const addNoteText = (note) => {
+  // Change code below this line
+  return {
+    type: ADD_NOTE,
+    text: note,
+  };
+  // Change code above this line
+};
+
+const store = Redux.createStore(notesReducer);
+
+console.log(store.getState());
+store.dispatch(addNoteText("Hello!"));
+console.log(store.getState());
+```
+
+### 
