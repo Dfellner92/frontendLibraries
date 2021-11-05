@@ -266,3 +266,11 @@ const ConnectedComponent = connect(
   mapDispatchToProps
 )(Presentational);
 ```
+
+### Connect Redux to the Messages App
+
+The code editor has all the code you've written in this section so far. The only change is that the React component is renamed to `Presentational`. Create a new component held in a constant called `Container` that uses `connect` to connect the `Presentational` component to Redux. Then, in the `AppWrapper`, render the React Redux `Provider` component. Pass Provider the Redux `store` as a prop and render `Container` as a child. Once everything is setup, you will see the messages app rendered to the page again.
+
+```javascript
+
+```
