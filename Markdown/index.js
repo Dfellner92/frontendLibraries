@@ -23,11 +23,38 @@ renderer.link = function (href, title, text) {
   return `<a target="_blank" href="${href}">${text}</a>`;
 };
 
+const initialPreview = `# Hello!
+## This is the sub header
+Here is a [link](https://www.freecodecamp.org)
+Heres some inline code, \`<div></div>\`.
+
+Here is a code block!
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+Here is some **bolded** text
+> Here is a block quote!
+
+Here is an image!
+![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+- And of course there are lists.
+  
+
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      preview: "",
+      preview: initialPreview,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -40,7 +67,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <textarea onChange={this.handleChange} id="editor"></textarea>
+        <textarea onChange={this.handleChange} id="editor">
+          {initialPreview}
+        </textarea>
         <div
           dangerouslySetInnerHTML={{
             __html: marked(this.state.preview, { renderer: renderer }),
