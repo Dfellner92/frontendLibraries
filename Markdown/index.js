@@ -18,6 +18,10 @@ marked.setOptions({
 });
 
 // INSERTS target="_blank" INTO HREF TAGS (required for Codepen links)
+const renderer = new marked.Renderer();
+renderer.link = function (href, title, text) {
+  return `<a target="_blank" href="${href}">${text}</a>`;
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +41,12 @@ class App extends React.Component {
     return (
       <div>
         <textarea onChange={this.handleChange} id="editor"></textarea>
-        <div id="preview">{this.state.preview}</div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: marked(this.state.preview, { renderer: renderer }),
+          }}
+          id="preview"
+        ></div>
       </div>
     );
   }
