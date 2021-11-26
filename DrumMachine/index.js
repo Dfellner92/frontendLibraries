@@ -17,14 +17,20 @@ class App extends React.Component {
     
     return (
       <div id="drum-machine">
-        <div id="display">{keys.map((key) => (
-            <div>{key}</div>
-          ))}</div>
+        <div id="display">
+          {keys.map((key, index) => (
+            <Box text={key} key={index}/>
+          ))}
+        </div>
       </div>
     )
   }
 }
 
- 
+const Box = (props) => {
+    <div className="box">
+        {props.text}
+    </div>
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
