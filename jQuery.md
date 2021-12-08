@@ -17,7 +17,7 @@ This is important because without your `document ready function`, your code may 
 ```javascript
 <script>$(document).ready(function(){
 });</script>
-//Only change code above this line 
+//Only change code above this line
 
 <div class="container-fluid">
   <h3 class="text-primary text-center">jQuery Playground</h3>
@@ -52,3 +52,39 @@ $("button").addClass("animated bounce");
   });
 </script>
 ```
+
+### Target Elements by Class Using jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+  });
+</script>
+```
+
+### Target Elements by Id Using jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+    $("#target3").addClass("animated fadeOut");
+  });
+</script>
+```
+
+### Target the Same Element with Multiple jQuery Selectors
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated");
+    $(".btn").addClass("shake");
+    $("#target1").addClass("btn-primary");
+  });
+</script>
+```
+
