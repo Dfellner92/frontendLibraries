@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="./jasmine/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="./jasmine/jasmine.css">
+
+    <script type="text/javascript" src="./jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="./jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="./jasmine/boot.js"></script>
+
+    <script>
+        function getOpposite(bool) {
+            return !bool;
+        }
+
+        function add(x, y) {
+            return x + y;
+        }
+
+        function minus(x, y) {
+            return x - y;
+        }
+
+        describe('Math Functions', () => {
+            it('Gets the Sum of 2 Numbers', () => {
+                // arrange
+                const num1 = 3;
+                const num2 = 2;
+
+                // act
+                const result = add(num1, num2);
+
+                //arrange
+                expect(result).toBe(5);
+                // expect(result + 1).toBe(6);
+                // expect(result).not.toBeGreaterThan(5);
+            })
+            it('Gets the Difference between 2 Numbers', () => {
+                // arrange
+                const num1 = 3;
+                const num2 = 2;
+
+                // act
+                const result = minus(num1, num2);
+
+                //arrange
+                expect(result).toBe(1);
+                // expect(result + 1).toBe(6);
+                // expect(result).not.toBeGreaterThan(5);
+            })
+        })
+
+        describe('Write Your Test Group Descriptions Here', () => {
+            it('Write Your Test Expectation Here', () => {
+                // arrange
+                let bool = false;
+
+                // act
+                const result = getOpposite(bool);
+
+                // assert
+                expect(result).toBe(true);
+            })
+        });
+    </script>
+</head>
+
+</html>
