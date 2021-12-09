@@ -88,3 +88,25 @@ $("button").addClass("animated bounce");
 </script>
 ```
 
+### Remove Classes from an Element with jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+    $("#target3").addClass("animated fadeOut");
+    $("button").removeClass("btn-default");
+  });
+</script>
+```
+
+### Change the CSS of an Element Using jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+  $("#target1").css("color", "red");
+  });
+</script>
+```
