@@ -110,3 +110,24 @@ $("button").addClass("animated bounce");
   });
 </script>
 ```
+
+### Disable an Element Using jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("#target1").prop("disabled", true);
+  });
+</script>
+```
+
+### Change Text Inside an Element Using jQuery
+
+```javascript
+<script>
+  $(document).ready(function() {
+    $("#target4").html("<em>#target4</em>");
+
+  });
+</script>
+```
